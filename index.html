@@ -11,6 +11,7 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     
+    <!-- Model Viewer de Google -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 
     <script>
@@ -95,36 +96,26 @@
 
                         <div className="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col lg:flex-row border border-gray-100">
                             
-                            {/* CONTENEDOR 3D MEJORADO */}
+                            {/* CONTENEDOR 3D MEJORADO PARA REALITY CAPTURE */}
                             <div className="w-full lg:w-3/5 bg-[#f8f8f8] relative min-h-[500px] lg:min-h-[600px] flex items-center justify-center">
                                 
                                 <div className="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur px-3 py-1.5 rounded-full text-[10px] font-bold text-gray-500 flex items-center gap-2 shadow-sm uppercase tracking-tighter">
-                                    <Icon name="move-3d" size={14} className="text-brand-red" /> Interactúa con tu comida
+                                    <Icon name="move-3d" size={14} className="text-brand-red" /> Gira el platillo
                                 </div>
 
-                                {/* AQUÍ ESTÁN LOS CAMBIOS TÉCNICOS: field-of-view, bounds y zoom-sensitivity */}
+                                {/* AQUÍ ESTÁ EL TRUCO: camera-target="auto auto auto" y disable-zoom */}
                                 <model-viewer 
                                     src="model.glb" 
                                     alt="Hamburguesa 3D" 
                                     auto-rotate 
                                     camera-controls 
-                                    touch-action="pan-y"
-                                    ar
-                                    shadow-intensity="2"
-                                    exposure="1"
+                                    disable-zoom
+                                    camera-target="auto auto auto"
                                     bounds="tight"
-                                    
-                                    /* 1. Hace que se vea más grande de inicio */
-                                    field-of-view="25deg" 
-                                    
-                                    /* 2. Controla qué tanto pueden acercarse o alejarse para que no se corte */
-                                    min-field-of-view="15deg"
-                                    max-field-of-view="45deg"
-                                    
-                                    /* 3. Suaviza el movimiento al ampliar */
-                                    interpolation-decay="200"
-                                    
-                                    className="w-full h-full outline-none"
+                                    ar
+                                    shadow-intensity="1.5"
+                                    exposure="1"
+                                    className="w-full h-full outline-none cursor-grab active:cursor-grabbing"
                                 >
                                 </model-viewer>
                             </div>
