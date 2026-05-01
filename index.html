@@ -5,16 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smash & Co. | Menú Interactivo 3D</title>
     
-    <!-- Tailwind CSS para el diseño rápido -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- React para la interactividad (opcional para un diseño estático, pero bueno para mantener el estándar) -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     
-    <!-- LIBRERÍA CRÍTICA: Model Viewer de Google para el 3D -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 
     <script>
@@ -23,15 +19,15 @@
                 extend: {
                     colors: {
                         brand: {
-                            dark: '#111827', // Casi negro
-                            red: '#DC2626',   // Rojo apetitoso
-                            yellow: '#F59E0B', // Amarillo mostaza
-                            light: '#F3F4F6'  // Gris claro para fondo
+                            dark: '#111827',
+                            red: '#DC2626',
+                            yellow: '#F59E0B',
+                            light: '#F3F4F6'
                         }
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'], // Tipografía moderna
-                        display: ['Bebas Neue', 'sans-serif'] // Tipografía para títulos fuertes
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Bebas Neue', 'sans-serif']
                     }
                 }
             }
@@ -39,10 +35,8 @@
     </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;800&display=swap');
-        
         body { background-color: #F3F4F6; }
         
-        /* Personalizando el botón de Realidad Aumentada (AR) que viene con model-viewer */
         model-viewer::part(default-ar-button) {
             background-color: #DC2626;
             color: white;
@@ -50,16 +44,11 @@
             padding: 0.75rem 1.5rem;
             font-family: 'Inter', sans-serif;
             font-weight: bold;
-            font-size: 0.875rem;
             border: none;
             position: absolute;
             bottom: 16px;
             right: 16px;
-            cursor: pointer;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        model-viewer::part(default-ar-button):hover {
-            background-color: #B91C1C;
         }
     </style>
 </head>
@@ -78,7 +67,6 @@
             return (
                 <div className="min-h-screen flex flex-col">
                     
-                    {/* NAVEGACIÓN TIPO FOOD TRUCK */}
                     <nav className="bg-brand-dark text-white px-6 py-4 flex items-center justify-between sticky top-0 z-50 shadow-md">
                         <div className="flex items-center gap-2">
                             <Icon name="flame" className="text-brand-yellow" size={28} />
@@ -89,133 +77,76 @@
                         </button>
                     </nav>
 
-                    {/* HERO HEADER */}
                     <header className="bg-brand-dark text-white py-16 px-6 text-center border-b-4 border-brand-yellow relative overflow-hidden">
-                        {/* Patrón de fondo sutil (cuadros tipo mantel) */}
                         <div className="absolute inset-0 opacity-10" style={{backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '20px 20px'}}></div>
-                        
                         <div className="relative z-10 max-w-2xl mx-auto">
-                            <span className="text-brand-yellow font-bold uppercase tracking-widest text-xs mb-4 block">La Evolución del Menú</span>
+                            <span className="text-brand-yellow font-bold uppercase tracking-widest text-xs mb-4 block">Experiencia Real 3D</span>
                             <h1 className="font-display text-6xl md:text-8xl text-white leading-none mb-4">
-                                NO SOLO LA <span className="text-brand-red">MIRES</span>.<br/> DALÁ VUELTA.
+                                LA MEJOR <span className="text-brand-red">VISTA</span>.<br/> EL MEJOR SABOR.
                             </h1>
-                            <p className="text-gray-400 text-lg md:text-xl">
-                                Explora nuestros platillos en 3D antes de pedir. Gira, acerca y mira cada detalle de los ingredientes frescos.
-                            </p>
                         </div>
                     </header>
 
-                    {/* SECCIÓN PRINCIPAL: EL MENÚ 3D */}
                     <main className="flex-grow py-12 px-6 max-w-7xl mx-auto w-full">
                         
                         <div className="mb-10 flex items-center justify-between border-b-2 border-gray-200 pb-4">
-                            <h2 className="font-display text-4xl text-brand-dark">Nuestra Estrella</h2>
-                            <span className="bg-brand-yellow text-brand-dark text-xs font-bold px-3 py-1 rounded-full uppercase">Top Ventas</span>
+                            <h2 className="font-display text-4xl text-brand-dark">Platillo Destacado</h2>
                         </div>
 
-                        {/* TARJETA DEL PRODUCTO 3D DESTACADO */}
                         <div className="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col lg:flex-row border border-gray-100">
                             
-                            {/* LADO IZQUIERDO: VISOR 3D (Este es el código importante) */}
-                            <div className="w-full lg:w-3/5 bg-gray-100 relative min-h-[400px] lg:min-h-[500px] flex items-center justify-center">
+                            {/* CONTENEDOR 3D MEJORADO */}
+                            <div className="w-full lg:w-3/5 bg-[#f8f8f8] relative min-h-[500px] lg:min-h-[600px] flex items-center justify-center">
                                 
-                                {/* Instrucción flotante sutil */}
-                                <div className="absolute top-4 left-4 z-10 bg-white/80 backdrop-blur px-3 py-1.5 rounded-full text-xs font-bold text-gray-600 flex items-center gap-2 shadow-sm pointer-events-none">
-                                    <Icon name="mouse-pointer-click" size={14} /> Gira para ver detalles
+                                <div className="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur px-3 py-1.5 rounded-full text-[10px] font-bold text-gray-500 flex items-center gap-2 shadow-sm uppercase tracking-tighter">
+                                    <Icon name="move-3d" size={14} className="text-brand-red" /> Interactúa con tu comida
                                 </div>
 
-                                {/* ETIQUETA DEL VISOR 3D DE GOOGLE */}
+                                {/* AQUÍ ESTÁN LOS CAMBIOS TÉCNICOS: field-of-view, bounds y zoom-sensitivity */}
                                 <model-viewer 
                                     src="model.glb" 
-                                    alt="La Clásica Smash Burger en 3D" 
+                                    alt="Hamburguesa 3D" 
                                     auto-rotate 
-                                    rotation-per-second="30deg"
                                     camera-controls 
-                                    ar 
-                                    ar-modes="webxr scene-viewer quick-look"
-                                    shadow-intensity="1"
-                                    exposure="0.8"
-                                    className="w-full h-full outline-none cursor-grab active:cursor-grabbing"
+                                    touch-action="pan-y"
+                                    ar
+                                    shadow-intensity="2"
+                                    exposure="1"
+                                    bounds="tight"
+                                    
+                                    /* 1. Hace que se vea más grande de inicio */
+                                    field-of-view="25deg" 
+                                    
+                                    /* 2. Controla qué tanto pueden acercarse o alejarse para que no se corte */
+                                    min-field-of-view="15deg"
+                                    max-field-of-view="45deg"
+                                    
+                                    /* 3. Suaviza el movimiento al ampliar */
+                                    interpolation-decay="200"
+                                    
+                                    className="w-full h-full outline-none"
                                 >
                                 </model-viewer>
                             </div>
 
-                            {/* LADO DERECHO: INFO DEL PRODUCTO */}
                             <div className="w-full lg:w-2/5 p-8 lg:p-12 flex flex-col justify-center">
-                                <h3 className="font-display text-5xl mb-2 text-brand-dark">La "Test" Burger</h3>
-                                <p className="text-3xl font-bold text-brand-red mb-6">$145.00 <span className="text-sm text-gray-400 font-normal line-through ml-2">$180.00</span></p>
+                                <h3 className="font-display text-5xl mb-2 text-brand-dark">La "Bufalo" Special</h3>
+                                <p className="text-3xl font-bold text-brand-red mb-6">$145.00</p>
                                 
-                                <p className="text-gray-600 mb-8 leading-relaxed">
-                                    Esta es una prueba de fotogrametría real. Puedes ver el pan artesanal, la textura de la carne y los vegetales frescos capturados directamente de un escaneo en la vida real.
+                                <p className="text-gray-600 mb-8 leading-relaxed italic">
+                                    "Diseñada para los que no se conforman con una foto. Explora cada ángulo de nuestro pan artesanal y carne premium."
                                 </p>
 
-                                <div className="space-y-4 mb-8">
-                                    <div className="flex items-center gap-3">
-                                        <div className="bg-green-100 p-2 rounded-full"><Icon name="leaf" size={16} className="text-green-600"/></div>
-                                        <span className="text-sm font-semibold">Vegetales 100% frescos</span>
-                                    </div>
-                                    <div className="flex items-center gap-3">
-                                        <div className="bg-orange-100 p-2 rounded-full"><Icon name="beef" size={16} className="text-orange-600"/></div>
-                                        <span className="text-sm font-semibold">Carne de res seleccionada</span>
-                                    </div>
-                                </div>
-
-                                <button className="w-full bg-brand-dark hover:bg-black text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-transform transform hover:scale-[1.02]">
-                                    <Icon name="shopping-bag" size={20} /> Agregar a la orden
+                                <button className="w-full bg-brand-dark hover:bg-black text-white font-bold py-5 rounded-2xl flex items-center justify-center gap-3 transition-all hover:scale-[1.02] shadow-lg">
+                                    <Icon name="shopping-cart" size={20} className="text-brand-yellow" /> Ordenar en 3D
                                 </button>
                             </div>
                         </div>
-
-                        {/* OTROS PRODUCTOS SIMULADOS (ESTÁTICOS CON FOTOS DE INTERNET PARA RELLENAR) */}
-                        <div className="mt-20">
-                            <h2 className="font-display text-4xl text-brand-dark mb-8 border-b-2 border-gray-200 pb-4">Para Acompañar</h2>
-                            
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                {/* Simulador 1 */}
-                                <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group cursor-pointer hover:shadow-md transition-shadow">
-                                    <div className="h-48 bg-gray-200 relative overflow-hidden">
-                                        <img src="https://images.unsplash.com/photo-1576107232684-1279f390859f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Papas Fritas" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                                    </div>
-                                    <div className="p-5">
-                                        <h4 className="font-bold text-lg mb-1">Papas Trufadas</h4>
-                                        <p className="text-brand-red font-bold">$65.00</p>
-                                    </div>
-                                </div>
-
-                                {/* Simulador 2 */}
-                                <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group cursor-pointer hover:shadow-md transition-shadow">
-                                    <div className="h-48 bg-gray-200 relative overflow-hidden">
-                                        <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Malteada" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                                    </div>
-                                    <div className="p-5">
-                                        <h4 className="font-bold text-lg mb-1">Malteada de Vainilla</h4>
-                                        <p className="text-brand-red font-bold">$85.00</p>
-                                    </div>
-                                </div>
-
-                                {/* Simulador 3 */}
-                                <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group cursor-pointer hover:shadow-md transition-shadow">
-                                    <div className="h-48 bg-gray-200 relative overflow-hidden">
-                                        <img src="https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Aros de Cebolla" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                                    </div>
-                                    <div className="p-5">
-                                        <h4 className="font-bold text-lg mb-1">Aros de Cebolla</h4>
-                                        <p className="text-brand-red font-bold">$75.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                     </main>
 
-                    {/* FOOTER */}
-                    <footer className="bg-brand-dark text-gray-400 py-10 text-center mt-auto border-t border-gray-800">
-                        <div className="flex justify-center items-center gap-2 mb-4">
-                            <Icon name="flame" className="text-brand-yellow" size={24} />
-                            <span className="font-display text-xl text-white tracking-wider pt-1">SMASH & CO.</span>
-                        </div>
-                        <p className="text-sm">Prueba de concepto de Menú 3D Interactivo.</p>
-                        <p className="text-xs mt-2 opacity-50">Desarrollado para mostrar el poder de la fotogrametría en la web.</p>
+                    <footer className="bg-brand-dark text-gray-500 py-10 text-center mt-auto border-t border-gray-800">
+                        <span className="font-display text-xl text-white tracking-widest pt-1">SMASH & CO.</span>
+                        <p className="text-[10px] mt-2 uppercase tracking-[0.3em]">Xalapa • Tecnología y Sabor</p>
                     </footer>
 
                 </div>
